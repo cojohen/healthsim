@@ -1,0 +1,110 @@
+service: ehr-backend
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+functions:
+  patient:
+    handler: dist/handlers/patientHandler.handler
+    events:
+      - http:
+          path: Patient
+          method: get
+      - http:
+          path: Patient
+          method: post
+  condition:
+    handler: dist/handlers/conditionHandler.handler
+    events:
+      - http:
+          path: Condition
+          method: get
+      - http:
+          path: Condition
+          method: post
+  medicationStatement:
+    handler: dist/handlers/medicationStatementHandler.handler
+    events:
+      - http:
+          path: MedicationStatement
+          method: get
+      - http:
+          path: MedicationStatement
+          method: post
+  allergyIntolerance:
+    handler: dist/handlers/allergyIntoleranceHandler.handler
+    events:
+      - http:
+          path: AllergyIntolerance
+          method: get
+      - http:
+          path: AllergyIntolerance
+          method: post
+  observation:
+    handler: dist/handlers/observationHandler.handler
+    events:
+      - http:
+          path: Observation
+          method: get
+      - http:
+          path: Observation
+          method: post
+  diagnosticReport:
+    handler: dist/handlers/diagnosticReportHandler.handler
+    events:
+      - http:
+          path: DiagnosticReport
+          method: get
+      - http:
+          path: DiagnosticReport
+          method: post
+  immunization:
+    handler: dist/handlers/immunizationHandler.handler
+    events:
+      - http:
+          path: Immunization
+          method: get
+      - http:
+          path: Immunization
+          method: post
+  appointment:
+    handler: dist/handlers/appointmentHandler.handler
+    events:
+      - http:
+          path: Appointment
+          method: get
+      - http:
+          path: Appointment
+          method: post
+  encounter:
+    handler: dist/handlers/encounterHandler.handler
+    events:
+      - http:
+          path: Encounter
+          method: get
+      - http:
+          path: Encounter
+          method: post
+  coverage:
+    handler: dist/handlers/coverageHandler.handler
+    events:
+      - http:
+          path: Coverage
+          method: get
+      - http:
+          path: Coverage
+          method: post
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 3000
+
+package:
+  individually: true
