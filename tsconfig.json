@@ -8,12 +8,7 @@
     "outDir": "./dist",
     "sourceMap": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "*": ["node_modules/*", "src/types/*"]
-    }
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

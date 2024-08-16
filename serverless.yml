@@ -1,8 +1,10 @@
-service: ehr-backend
+service: health-sim
+
+# frameworkVersion: "4.1.21"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   stage: ${opt:stage, 'dev'}
   region: ${opt:region, 'us-east-1'}
 
@@ -99,7 +101,6 @@ functions:
           method: post
 
 plugins:
-  - serverless-plugin-typescript
   - serverless-offline
 
 custom:
