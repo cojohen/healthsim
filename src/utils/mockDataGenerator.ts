@@ -1,5 +1,3 @@
-// src/utils/mockDataGenerator.ts
-
 import { v4 as uuidv4 } from "uuid";
 import { createCodeableConcept, createReference } from "./fhirUtils";
 
@@ -102,7 +100,15 @@ interface Observation {
     system: string;
     code: string;
   };
-  interpretation?: ReturnType<typeof createCodeableConcept>[];
+  component?: Array<{
+    code: ReturnType<typeof createCodeableConcept>;
+    valueQuantity: {
+      value: number;
+      unit: string;
+      system: string;
+      code: string;
+    };
+  }>;
 }
 
 interface DiagnosticReport {
@@ -426,7 +432,57 @@ export function generateCondition(): Condition {
     { code: "I10", display: "Essential (primary) hypertension" },
     { code: "E11", display: "Type 2 diabetes mellitus" },
     { code: "J45", display: "Asthma" },
+    { code: "E66", display: "Obesity" },
+    { code: "F32", display: "Major depressive disorder, single episode" },
+    { code: "M54.5", display: "Low back pain" },
+    { code: "J30", display: "Allergic rhinitis" },
+    { code: "K21", display: "Gastro-esophageal reflux disease" },
+    { code: "I20", display: "Angina pectoris" },
+    { code: "I25", display: "Chronic ischemic heart disease" },
+    { code: "N18", display: "Chronic kidney disease" },
+    { code: "F41.1", display: "Generalized anxiety disorder" },
     { code: "M17", display: "Osteoarthritis of knee" },
+    { code: "G47.3", display: "Sleep apnea" },
+    { code: "L20", display: "Atopic dermatitis" },
+    { code: "R51", display: "Headache" },
+    { code: "J20", display: "Acute bronchitis" },
+    { code: "K50", display: "Crohn's disease" },
+    { code: "K51", display: "Ulcerative colitis" },
+    { code: "C34", display: "Lung cancer" },
+    { code: "C50", display: "Breast cancer" },
+    { code: "C61", display: "Prostate cancer" },
+    { code: "C18", display: "Colon cancer" },
+    { code: "C92", display: "Myeloid leukemia" },
+    { code: "G40", display: "Epilepsy" },
+    { code: "I50", display: "Heart failure" },
+    { code: "I48", display: "Atrial fibrillation" },
+    { code: "J44", display: "Chronic obstructive pulmonary disease" },
+    { code: "K35", display: "Acute appendicitis" },
+    { code: "K80", display: "Cholelithiasis" },
+    { code: "L40", display: "Psoriasis" },
+    { code: "M16", display: "Osteoarthritis of hip" },
+    { code: "M81", display: "Osteoporosis" },
+    { code: "N40", display: "Benign prostatic hyperplasia" },
+    { code: "R73", display: "Elevated blood glucose level" },
+    { code: "Z71.3", display: "Dietary counseling and surveillance" },
+    { code: "Z79.4", display: "Long-term (current) use of insulin" },
+    {
+      code: "Z86.73",
+      display:
+        "Personal history of transient ischemic attack (TIA), and cerebral infarction without residual deficits",
+    },
+    { code: "Z87.891", display: "Personal history of nicotine dependence" },
+    { code: "Z91.81", display: "History of falling" },
+    { code: "Z93.3", display: "Colostomy status" },
+    { code: "Z95.1", display: "Presence of aortocoronary bypass graft" },
+    { code: "Z98.890", display: "Personal history of surgery" },
+    { code: "Z99.2", display: "Dependence on renal dialysis" },
+    { code: "R53.1", display: "Weakness" },
+    { code: "R53.83", display: "Other fatigue" },
+    { code: "R63.4", display: "Abnormal weight loss" },
+    { code: "R64", display: "Cachexia" },
+    { code: "R68.89", display: "Other general symptoms and signs" },
+    { code: "R73.9", display: "Hyperglycemia, unspecified" },
   ];
 
   const condition = conditions[Math.floor(Math.random() * conditions.length)];
@@ -467,7 +523,53 @@ export function generateMedicationStatement(): MedicationStatement {
   const medications = [
     { code: "315246", display: "Lisinopril 10 MG Oral Tablet" },
     { code: "314231", display: "Metformin 500 MG Oral Tablet" },
-    { code: "746281", display: "Albuterol 0.09 MG/ACTUAT Inhalant Solution" },
+    { code: "315247", display: "Atorvastatin 20 MG Oral Tablet" },
+    { code: "314232", display: "Amlodipine 5 MG Oral Tablet" },
+    { code: "315248", display: "Metoprolol 50 MG Oral Tablet" },
+    { code: "314233", display: "Omeprazole 20 MG Oral Capsule" },
+    { code: "315249", display: "Simvastatin 40 MG Oral Tablet" },
+    { code: "314234", display: "Losartan 50 MG Oral Tablet" },
+    { code: "315250", display: "Gabapentin 300 MG Oral Capsule" },
+    { code: "314235", display: "Hydrochlorothiazide 25 MG Oral Tablet" },
+    { code: "315251", display: "Levothyroxine 50 MCG Oral Tablet" },
+    { code: "314236", display: "Zolpidem 10 MG Oral Tablet" },
+    { code: "315252", display: "Sertraline 50 MG Oral Tablet" },
+    { code: "314237", display: "Furosemide 40 MG Oral Tablet" },
+    { code: "315253", display: "Citalopram 20 MG Oral Tablet" },
+    { code: "314238", display: "Alprazolam 0.5 MG Oral Tablet" },
+    { code: "315254", display: "Fluoxetine 20 MG Oral Capsule" },
+    { code: "314239", display: "Clopidogrel 75 MG Oral Tablet" },
+    { code: "315255", display: "Prednisone 10 MG Oral Tablet" },
+    { code: "314240", display: "Ibuprofen 200 MG Oral Tablet" },
+    { code: "315256", display: "Tramadol 50 MG Oral Tablet" },
+    { code: "314241", display: "Warfarin 5 MG Oral Tablet" },
+    { code: "315257", display: "Oxycodone 5 MG Oral Tablet" },
+    { code: "314242", display: "Ciprofloxacin 500 MG Oral Tablet" },
+    { code: "315258", display: "Amoxicillin 500 MG Oral Capsule" },
+    { code: "314243", display: "Azithromycin 250 MG Oral Tablet" },
+    { code: "315259", display: "Pantoprazole 40 MG Oral Tablet" },
+    { code: "314244", display: "Loratadine 10 MG Oral Tablet" },
+    { code: "315260", display: "Montelukast 10 MG Oral Tablet" },
+    { code: "314245", display: "Citalopram 10 MG Oral Tablet" },
+    { code: "315261", display: "Bupropion 150 MG Oral Tablet" },
+    { code: "314246", display: "Duloxetine 30 MG Oral Capsule" },
+    { code: "315262", display: "Venlafaxine 75 MG Oral Tablet" },
+    { code: "314247", display: "Trazodone 50 MG Oral Tablet" },
+    { code: "315263", display: "Escitalopram 10 MG Oral Tablet" },
+    { code: "314248", display: "Quetiapine 25 MG Oral Tablet" },
+    { code: "315264", display: "Lorazepam 1 MG Oral Tablet" },
+    { code: "314249", display: "Diazepam 5 MG Oral Tablet" },
+    { code: "315265", display: "Hydrocodone 10 MG Oral Tablet" },
+    { code: "314250", display: "Acetaminophen 500 MG Oral Tablet" },
+    { code: "315266", display: "Naproxen 500 MG Oral Tablet" },
+    { code: "314251", display: "Gabapentin 100 MG Oral Capsule" },
+    { code: "315267", display: "Doxycycline 100 MG Oral Capsule" },
+    { code: "314252", display: "Ranitidine 150 MG Oral Tablet" },
+    { code: "315268", display: "Cetirizine 10 MG Oral Tablet" },
+    { code: "314253", display: "Metformin 1000 MG Oral Tablet" },
+    { code: "315269", display: "Rosuvastatin 10 MG Oral Tablet" },
+    { code: "314254", display: "Simvastatin 20 MG Oral Tablet" },
+    { code: "315270", display: "Albuterol 90 MCG/ACT Inhalation Aerosol" },
   ];
 
   const medication =
@@ -504,8 +606,54 @@ export function generateAllergyIntolerance(): AllergyIntolerance {
   const allergens = [
     { code: "91935009", display: "Allergy to peanuts" },
     { code: "91934008", display: "Allergy to milk" },
-    { code: "418689008", display: "Allergy to grass pollen" },
-    { code: "232350006", display: "Allergy to house dust mite" },
+    { code: "91936006", display: "Allergy to eggs" },
+    { code: "91937002", display: "Allergy to fish" },
+    { code: "91938007", display: "Allergy to shellfish" },
+    { code: "91939004", display: "Allergy to tree nuts" },
+    { code: "91940001", display: "Allergy to wheat" },
+    { code: "91941007", display: "Allergy to soybeans" },
+    { code: "91942000", display: "Allergy to sesame" },
+    { code: "91943005", display: "Allergy to latex" },
+    { code: "91944004", display: "Allergy to pollen" },
+    { code: "91945003", display: "Allergy to dust mites" },
+    { code: "91946002", display: "Allergy to pet dander" },
+    { code: "91947006", display: "Allergy to mold" },
+    { code: "91948001", display: "Allergy to insect stings" },
+    { code: "91949009", display: "Allergy to penicillin" },
+    { code: "91950005", display: "Allergy to sulfa drugs" },
+    { code: "91951009", display: "Allergy to aspirin" },
+    { code: "91952002", display: "Allergy to ibuprofen" },
+    { code: "91953007", display: "Allergy to nickel" },
+    { code: "91954001", display: "Allergy to bee stings" },
+    { code: "91955000", display: "Allergy to wasp stings" },
+    { code: "91956004", display: "Allergy to soy" },
+    { code: "91957008", display: "Allergy to gluten" },
+    { code: "91958003", display: "Allergy to sulfites" },
+    { code: "91959006", display: "Allergy to eggs" },
+    { code: "91960009", display: "Allergy to corn" },
+    { code: "91961008", display: "Allergy to strawberries" },
+    { code: "91962001", display: "Allergy to tomatoes" },
+    { code: "91963006", display: "Allergy to chocolate" },
+    { code: "91964000", display: "Allergy to garlic" },
+    { code: "91965004", display: "Allergy to bananas" },
+    { code: "91966003", display: "Allergy to avocados" },
+    { code: "91967007", display: "Allergy to kiwi" },
+    { code: "91968002", display: "Allergy to chestnuts" },
+    { code: "91969005", display: "Allergy to celery" },
+    { code: "91970006", display: "Allergy to mustard" },
+    { code: "91971005", display: "Allergy to sunflower seeds" },
+    { code: "91972003", display: "Allergy to poppy seeds" },
+    { code: "91973008", display: "Allergy to lupin" },
+    { code: "91974002", display: "Allergy to lentils" },
+    { code: "91975001", display: "Allergy to chickpeas" },
+    { code: "91976000", display: "Allergy to peas" },
+    { code: "91977004", display: "Allergy to beans" },
+    { code: "91978009", display: "Allergy to pork" },
+    { code: "91979001", display: "Allergy to beef" },
+    { code: "91980004", display: "Allergy to chicken" },
+    { code: "91981000", display: "Allergy to turkey" },
+    { code: "91982007", display: "Allergy to lamb" },
+    { code: "91983002", display: "Allergy to rabbit" },
   ];
 
   const allergen = allergens[Math.floor(Math.random() * allergens.length)];
@@ -567,14 +715,124 @@ export function generateObservation(): Observation {
       min: 60,
       max: 80,
     },
+    {
+      code: "2085-9",
+      display: "Cholesterol in HDL",
+      unit: "mg/dL",
+      min: 40,
+      max: 60,
+    },
+    {
+      code: "2089-1",
+      display: "Cholesterol in LDL",
+      unit: "mg/dL",
+      min: 0,
+      max: 100,
+    },
+    {
+      code: "55284-4",
+      display: "Blood pressure",
+      unit: "mm[Hg]",
+      min: null,
+      max: null,
+    },
+    {
+      code: "29463-7",
+      display: "Body weight",
+      unit: "kg",
+      min: null,
+      max: null,
+    },
+    {
+      code: "8302-2",
+      display: "Body height",
+      unit: "cm",
+      min: null,
+      max: null,
+    },
+    {
+      code: "39156-5",
+      display: "Body mass index",
+      unit: "kg/m2",
+      min: 18.5,
+      max: 24.9,
+    },
+    {
+      code: "14743-9",
+      display: "Glucose [Moles/volume] in Blood",
+      unit: "mmol/L",
+      min: 3.9,
+      max: 5.5,
+    },
+    {
+      code: "15074-8",
+      display: "Glucose [Mass/volume] in Blood",
+      unit: "mg/dL",
+      min: 70,
+      max: 99,
+    },
+    {
+      code: "4548-4",
+      display: "Hemoglobin A1c/Hemoglobin.total in Blood",
+      unit: "%",
+      min: 4,
+      max: 5.6,
+    },
+    {
+      code: "1751-7",
+      display: "Creatinine [Mass/volume] in Serum or Plasma",
+      unit: "mg/dL",
+      min: 0.6,
+      max: 1.2,
+    },
+    {
+      code: "2823-3",
+      display: "Potassium [Moles/volume] in Serum or Plasma",
+      unit: "mmol/L",
+      min: 3.5,
+      max: 5.0,
+    },
+    {
+      code: "2824-1",
+      display: "Sodium [Moles/volume] in Serum or Plasma",
+      unit: "mmol/L",
+      min: 135,
+      max: 145,
+    },
+    {
+      code: "20565-8",
+      display: "Calcium [Moles/volume] in Serum or Plasma",
+      unit: "mmol/L",
+      min: 2.2,
+      max: 2.6,
+    },
+    {
+      code: "1759-0",
+      display: "Bilirubin.total [Mass/volume] in Serum or Plasma",
+      unit: "mg/dL",
+      min: 0.1,
+      max: 1.2,
+    },
+    {
+      code: "1975-2",
+      display: "Urea nitrogen [Mass/volume] in Serum or Plasma",
+      unit: "mg/dL",
+      min: 7,
+      max: 20,
+    },
+    {
+      code: "2345-7",
+      display: "Glucose [Mass/volume] in Urine",
+      unit: "mg/dL",
+      min: 0,
+      max: 15,
+    },
   ];
 
   const observation =
     observations[Math.floor(Math.random() * observations.length)];
-  const value =
-    Math.random() * (observation.max - observation.min) + observation.min;
 
-  return {
+  let result: Observation = {
     resourceType: "Observation",
     id: uuidv4(),
     status: "final",
@@ -593,13 +851,76 @@ export function generateObservation(): Observation {
     subject: createReference("Patient", uuidv4()),
     effectiveDateTime: generateRandomDate(2020, 2023),
     issued: new Date().toISOString(),
-    valueQuantity: {
-      value: parseFloat(value.toFixed(1)),
-      unit: observation.unit,
-      system: "http://unitsofmeasure.org",
-      code: observation.unit,
-    },
   };
+
+  // Handle special cases
+  switch (observation.code) {
+    case "55284-4": // Blood pressure
+      result.component = [
+        {
+          code: createCodeableConcept(
+            "8480-6",
+            "http://loinc.org",
+            "Systolic blood pressure"
+          ),
+          valueQuantity: {
+            value: Math.floor(Math.random() * (120 - 90 + 1)) + 90,
+            unit: "mm[Hg]",
+            system: "http://unitsofmeasure.org",
+            code: "mm[Hg]",
+          },
+        },
+        {
+          code: createCodeableConcept(
+            "8462-4",
+            "http://loinc.org",
+            "Diastolic blood pressure"
+          ),
+          valueQuantity: {
+            value: Math.floor(Math.random() * (80 - 60 + 1)) + 60,
+            unit: "mm[Hg]",
+            system: "http://unitsofmeasure.org",
+            code: "mm[Hg]",
+          },
+        },
+      ];
+      break;
+    case "29463-7": // Body weight
+      result.valueQuantity = {
+        value: parseFloat((Math.random() * (120 - 40) + 40).toFixed(1)),
+        unit: "kg",
+        system: "http://unitsofmeasure.org",
+        code: "kg",
+      };
+      break;
+    case "8302-2": // Body height
+      result.valueQuantity = {
+        value: parseFloat((Math.random() * (200 - 150) + 150).toFixed(1)),
+        unit: "cm",
+        system: "http://unitsofmeasure.org",
+        code: "cm",
+      };
+      break;
+    default:
+      if (observation.min !== null && observation.max !== null) {
+        const value =
+          Math.random() * (observation.max - observation.min) + observation.min;
+        result.valueQuantity = {
+          value: parseFloat(value.toFixed(1)),
+          unit: observation.unit,
+          system: "http://unitsofmeasure.org",
+          code: observation.unit,
+        };
+      } else {
+        // For any other cases where min and max are null,
+        // you might want to handle them specifically or skip value assignment
+        console.warn(
+          `No specific handling for observation: ${observation.display}`
+        );
+      }
+  }
+
+  return result;
 }
 
 export function generateDiagnosticReport(): DiagnosticReport {
@@ -609,8 +930,82 @@ export function generateDiagnosticReport(): DiagnosticReport {
       display:
         "Complete blood count (hemogram) panel - Blood by Automated count",
     },
-    { code: "30954-2", display: "Liver function panel - Serum or Plasma" },
-    { code: "57021-8", display: "CBC W Auto Differential panel - Blood" },
+    {
+      code: "30954-2",
+      display: "Liver function panel - Serum or Plasma",
+    },
+    {
+      code: "57021-8",
+      display: "CBC W Auto Differential panel - Blood",
+    },
+    {
+      code: "24323-8",
+      display: "Basic Metabolic Panel - Serum or Plasma",
+    },
+    {
+      code: "24331-1",
+      display: "Comprehensive Metabolic Panel - Serum or Plasma",
+    },
+    {
+      code: "2093-3",
+      display: "Cholesterol measurement - Serum or Plasma",
+    },
+    {
+      code: "2571-8",
+      display: "Lipid panel - Serum or Plasma",
+    },
+    {
+      code: "26453-1",
+      display: "Thyroid function panel - Serum or Plasma",
+    },
+    {
+      code: "45066-8",
+      display: "Urinalysis complete with microscopy - Urine",
+    },
+    {
+      code: "1975-2",
+      display: "Creatinine measurement - Serum or Plasma",
+    },
+    {
+      code: "2345-7",
+      display: "Glucose measurement - Serum or Plasma",
+    },
+    {
+      code: "4548-4",
+      display: "Hemoglobin A1c measurement - Blood",
+    },
+    {
+      code: "11579-0",
+      display: "Hepatic function panel - Serum or Plasma",
+    },
+    {
+      code: "24357-5",
+      display: "Renal function panel - Serum or Plasma",
+    },
+    {
+      code: "50398-7",
+      display: "Prostate-specific antigen (PSA) measurement - Serum or Plasma",
+    },
+    {
+      code: "26464-8",
+      display: "Iron panel - Serum or Plasma",
+    },
+    {
+      code: "2095-8",
+      display: "HDL Cholesterol measurement - Serum or Plasma",
+    },
+    {
+      code: "2089-1",
+      display: "LDL Cholesterol measurement - Serum or Plasma",
+    },
+    {
+      code: "2951-2",
+      display: "Sodium measurement - Serum or Plasma",
+    },
+    {
+      code: "2823-3",
+      display: "Potassium measurement - Serum or Plasma",
+    },
   ];
 
   const report = reports[Math.floor(Math.random() * reports.length)];
@@ -646,6 +1041,22 @@ export function generateImmunization(): Immunization {
     { code: "19", display: "BCG vaccine" },
     { code: "20", display: "DTaP vaccine" },
     { code: "10", display: "IPV vaccine" },
+    { code: "21", display: "Varicella vaccine" },
+    { code: "33", display: "Pneumococcal conjugate vaccine" },
+    { code: "89", display: "Influenza vaccine" },
+    { code: "03", display: "MMR vaccine" },
+    { code: "52", display: "Hepatitis A vaccine" },
+    { code: "114", display: "Meningococcal vaccine" },
+    { code: "62", display: "HPV vaccine" },
+    { code: "85", display: "Tdap vaccine" },
+    { code: "83", display: "Zoster vaccine" },
+    { code: "88", display: "Rotavirus vaccine" },
+    { code: "115", display: "COVID-19 vaccine" },
+    { code: "118", display: "Dengue vaccine" },
+    { code: "39", display: "Japanese encephalitis vaccine" },
+    { code: "91", display: "Rabies vaccine" },
+    { code: "84", display: "Yellow fever vaccine" },
+    { code: "86", display: "Typhoid vaccine" },
   ];
 
   const vaccine = vaccines[Math.floor(Math.random() * vaccines.length)];
@@ -670,6 +1081,23 @@ export function generateAppointment(): Appointment {
     { code: "408443003", display: "General medical practice" },
     { code: "394701000", display: "Cardiology" },
     { code: "394584008", display: "Dermatology" },
+    { code: "394586005", display: "Gastroenterology" },
+    { code: "394591006", display: "Neurology" },
+    { code: "394602003", display: "Oncology" },
+    { code: "394611008", display: "Orthopedics" },
+    { code: "394801008", display: "Pediatrics" },
+    { code: "394814009", display: "Psychiatry" },
+    { code: "394821004", display: "Radiology" },
+    { code: "394848003", display: "Urology" },
+    { code: "394582007", display: "Dentistry" },
+    { code: "394593009", display: "Obstetrics and Gynecology" },
+    { code: "394580004", display: "Chiropractic" },
+    { code: "394600005", display: "Ophthalmology" },
+    { code: "394605000", display: "Pathology" },
+    { code: "394611008", display: "Pulmonology" },
+    { code: "394801008", display: "Rheumatology" },
+    { code: "394848003", display: "Surgery" },
+    { code: "394582007", display: "Endocrinology" },
   ];
 
   const appointmentType =
@@ -713,6 +1141,23 @@ export function generateEncounter(): Encounter {
     { code: "AMB", display: "ambulatory" },
     { code: "EMER", display: "emergency" },
     { code: "IMP", display: "inpatient encounter" },
+    { code: "HH", display: "home health" },
+    { code: "VIRT", display: "virtual" },
+    { code: "OBS", display: "observation" },
+    { code: "PRENC", display: "pre-admission" },
+    { code: "POSTNC", display: "post-discharge" },
+    { code: "WELL", display: "wellness visit" },
+    { code: "CONS", display: "consultation" },
+    { code: "TELE", display: "telemedicine" },
+    { code: "SURG", display: "surgical day-care" },
+    { code: "THER", display: "therapy session" },
+    { code: "REHAB", display: "rehabilitation" },
+    { code: "DIAG", display: "diagnostic" },
+    { code: "MAT", display: "maternity" },
+    { code: "PSYCH", display: "psychiatric" },
+    { code: "DENT", display: "dental" },
+    { code: "PHARM", display: "pharmacy" },
+    { code: "NURS", display: "nursing" },
   ];
 
   const encounterType =
@@ -759,6 +1204,23 @@ export function generateCoverage(): Coverage {
     { code: "EHCPOL", display: "extended healthcare" },
     { code: "PUBLICPOL", display: "public healthcare" },
     { code: "DENTPRG", display: "dental program" },
+    { code: "MEDICARE", display: "Medicare" },
+    { code: "MEDICAID", display: "Medicaid" },
+    { code: "PRIVPOL", display: "private insurance" },
+    { code: "TRICARE", display: "TRICARE" },
+    { code: "VETBEN", display: "veteran benefits" },
+    { code: "WORKCOMP", display: "workers' compensation" },
+    { code: "AUTOINS", display: "automobile insurance" },
+    { code: "TRAVELINS", display: "travel insurance" },
+    { code: "LIFEINS", display: "life insurance" },
+    { code: "DISABINS", display: "disability insurance" },
+    { code: "LONGTERM", display: "long-term care insurance" },
+    { code: "VISION", display: "vision care" },
+    { code: "PHARMACY", display: "pharmacy benefits" },
+    { code: "MENTALHLTH", display: "mental health coverage" },
+    { code: "REHAB", display: "rehabilitation coverage" },
+    { code: "HOSPICE", display: "hospice care" },
+    { code: "MATERNITY", display: "maternity care" },
   ];
 
   const coverageType =
@@ -799,8 +1261,110 @@ function generateRandomDate(startYear: number, endYear: number): string {
 }
 
 function generateAddress() {
-  const cities = ["Springfield", "Riverside", "Fairview", "Lakeside"];
-  const states = ["CA", "NY", "TX", "FL", "IL"];
+  const cities = [
+    "Washington",
+    "Franklin",
+    "Clinton",
+    "Arlington",
+    "Centerville",
+    "Georgetown",
+    "Lebanon",
+    "Springfield",
+    "Fairview",
+    "Salem",
+    "Madison",
+    "Chester",
+    "Marion",
+    "Greenville",
+    "Bristol",
+    "Dayton",
+    "Milton",
+    "Newport",
+    "Troy",
+    "Auburn",
+    "Manchester",
+    "Kingston",
+    "Burlington",
+    "Clayton",
+    "Richmond",
+    "Oxford",
+    "Jackson",
+    "Hamilton",
+    "Plymouth",
+    "Winchester",
+    "Riverside",
+    "Lakeside",
+    "Ashland",
+    "Milford",
+    "Oakland",
+    "Waverly",
+    "Salem",
+    "Marion",
+    "Chester",
+    "Greenville",
+    "Arlington",
+    "Manchester",
+    "Springfield",
+    "Milton",
+    "Ashland",
+    "Waverly",
+    "Oakland",
+    "Kingston",
+    "Dayton",
+    "Burlington",
+  ];
+  const states = [
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
+  ];
 
   return {
     use: "home",
